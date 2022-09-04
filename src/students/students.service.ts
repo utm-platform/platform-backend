@@ -2,26 +2,28 @@ import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { CreateStudentDto } from './dto/create-student.dto'
 import { UpdateStudentDto } from './dto/update-student.dto'
-import { StudentsDocument } from './schema/students.schema'
+import { Students, StudentsDocument } from './schema/students.schema'
 import { Model } from 'mongoose'
-
+import * as bcrypt from 'bcrypt'
 @Injectable()
 export class StudentsService {
 
-    constructor(@InjectModel('Students') private studentsModule: Model<StudentsDocument>) {}
+    constructor(@InjectModel(Students.name) private studentsModel: Model<StudentsDocument>) {}
 
     async create(createStudentDto: CreateStudentDto) {
-        const studentCreated = this.studentsModule.create(createStudentDto)
-
-        return studentCreated
+        
+        const hash = await bcrypt.hash(createStudentDto.password, 10)
+        createStudentDto.password = hash
+        
+        return await this.studentsModel.create(createStudentDto)
     }
 
     async findAll() {
-        return await this.studentsModule.find({})
+        return await this.studentsModel.find({})
     }
 
     async findOne(id: string) {
-        return await this.studentsModule.findById(id)
+        return await this.studentsModel.findById(id)
     }
 
     update(id: string, updateStudentDto: UpdateStudentDto) {
