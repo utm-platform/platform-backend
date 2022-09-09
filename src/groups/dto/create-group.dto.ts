@@ -9,7 +9,6 @@ export class CreateGroupDto {
     @IsNotEmpty()
     @ApiProperty()
         career: string
-    @IsNotEmpty()
     @ApiProperty()
         teacher: Types.ObjectId
 }
