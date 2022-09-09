@@ -13,6 +13,7 @@ async function bootstrap() {
         .setDescription('The English Platform API description')
         .setVersion('1.0')
         .addTag('students')
+        .addTag('groups')
         .build()
 
     const document = SwaggerModule.createDocument(app, config)

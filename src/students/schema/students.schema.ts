@@ -1,31 +1,33 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document, Types } from 'mongoose'
 
-export type StudentsDocument = Students & Document
+export type StudentDocument = Student & Document
 
 @Schema()
-export class Students {
+export class Student {
     @Prop({unique: true})
         matricula: string
-    @Prop()
+    @Prop({required: true})
         name: string
-    @Prop()
+    @Prop({required: true})
         lastname: string
     @Prop({unique: true})
         email: string
-    @Prop({select: false})
+    @Prop({required: true, select: false})
         password: string
-    @Prop()
-        group: Types.ObjectId
-    @Prop()
-        teacher: Types.ObjectId
+    @Prop({default: true})
+        isActive: boolean
+    @Prop({required: true, type: Types.ObjectId, ref: 'Group'})
+        group: {
+            type: Types.ObjectId,
+            ref: 'Group'
+        }
 }
 
-export const StudentsSchema = SchemaFactory.createForClass(Students)
+export const StudentSchema = SchemaFactory.createForClass(Student)
 
-StudentsSchema.set('toJSON', {
+StudentSchema.set('toJSON', {
     transform: (doc, ret) => {
-        ret.id = ret._id
         delete ret.password
         delete ret._id
         delete ret.__v
