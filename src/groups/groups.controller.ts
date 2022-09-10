@@ -31,6 +31,6 @@ export class GroupsController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-      return this.groupsService.remove(+id)
+      return this.groupsService.remove(id)
   }
 }

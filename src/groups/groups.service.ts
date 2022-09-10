@@ -27,7 +27,7 @@ export class GroupsService {
         return `This action updates a #${id} group`
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} group`
+    async remove(id: string) {
+        return await this.groupsModel.findByIdAndDelete(id)
     }
 }
