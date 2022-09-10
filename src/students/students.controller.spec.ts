@@ -2,7 +2,7 @@ import { getModelToken } from '@nestjs/mongoose'
 import { Test, TestingModule } from '@nestjs/testing'
 import { StudentsController } from './students.controller'
 import { StudentsModule } from './students.module'
-import { Students } from './schema/students.schema'
+import { Student } from './schema/students.schema'
 
 describe('StudentsController', () => {
     let controller: StudentsController
@@ -11,7 +11,7 @@ describe('StudentsController', () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [StudentsModule],
         })
-            .overrideProvider(getModelToken(Students.name))
+            .overrideProvider(getModelToken(Student.name))
             .useValue(jest.fn())
             .compile()
 
