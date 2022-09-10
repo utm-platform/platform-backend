@@ -4,7 +4,7 @@ import { Types } from 'mongoose'
 
 export class CreateStudentDto {
     @IsNotEmpty()
-    @ApiProperty()
+    @ApiProperty({description: 'La ID del estudiante', example: '1930599'})
         matricula: string
     @IsNotEmpty()
     @Length(4, 20)
@@ -20,9 +20,8 @@ export class CreateStudentDto {
     @IsNotEmpty()
     @ApiProperty({description: 'Contraseña', example: 'Passw@rd&0626'})
         password: string
-    @ApiProperty()
-        isActive: boolean
+    isActive: boolean
     @IsNotEmpty()
-    @ApiProperty()
+    @ApiProperty({description: 'ID del grupo', example: '5f9f9c0b9b9b9b9b9b9b9b9b'})
         group: Types.ObjectId
 }
