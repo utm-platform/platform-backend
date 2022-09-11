@@ -17,7 +17,10 @@ import { ApiTags } from '@nestjs/swagger'
 export class StudentsController {
     constructor(private readonly studentsService: StudentsService) {}
     
-    // TODO Por verse qué hay que mejorar
+    /*
+    TODO Implementar autenticación
+    TODO Hacer correctamente la referencia al group
+    */
     @Post()
     create(@Body() createStudentDto: CreateStudentDto) {
         return this.studentsService.create(createStudentDto)
@@ -28,9 +31,9 @@ export class StudentsController {
         return this.studentsService.findAll()
     }
     // TODO Implementar autenticación
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.studentsService.findOne(id)
+    @Get(':matricula')
+    findOne(@Param('matricula') matricula: string) {
+        return this.studentsService.findOne(matricula)
     }
     // TODO No hace nada todavía
     @Patch(':id')
