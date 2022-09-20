@@ -13,7 +13,7 @@ export class Student {
         lastname: string
     @Prop({unique: true})
         email: string
-    @Prop({required: true, select: false})
+    @Prop({required: true})
         password: string
     @Prop({default: true})
         isActive: boolean
@@ -31,5 +31,6 @@ StudentSchema.set('toJSON', {
         delete ret.password
         delete ret._id
         delete ret.__v
+        delete ret.isActive
     }
 })

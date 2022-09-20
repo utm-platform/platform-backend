@@ -12,8 +12,9 @@ async function bootstrap() {
         .setTitle('English Platform API')
         .setDescription('Documentación de la API de la plataforma de inglés')
         .setVersion('1.0')
-        .addTag('students')
+        .addTag('auth')
         .addTag('groups')
+        .addTag('students')
         .build()
 
     const document = SwaggerModule.createDocument(app, config)
