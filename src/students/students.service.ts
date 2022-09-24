@@ -23,14 +23,14 @@ export class StudentsService {
     }
 
     async findOne(matricula: string) {
-        return await this.studentsModel.find({matricula})
+        return await this.studentsModel.find({matricula, isActive: true})
     }
 
     update(id: string, updateStudentDto: UpdateStudentDto) {
         return `This action updates a #${id} student`
     }
 
-    remove(id: string) {
-        return `This action removes a #${id} student`
+    remove(matricula: string) {
+        return this.studentsModel.findOneAndUpdate({matricula}, {isActive: false})
     }
 }
