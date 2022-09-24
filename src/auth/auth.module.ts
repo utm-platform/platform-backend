@@ -5,6 +5,7 @@ import { StudentSchema } from '../students/schema/students.schema'
 import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import 'dotenv/config'
+import { JwtStrategy } from './jwt.strategy'
 
 @Module({
     imports: [
@@ -16,6 +17,6 @@ import 'dotenv/config'
         
     ],
     controllers: [AuthController],
-    providers: [AuthService]
+    providers: [AuthService, JwtStrategy]
 })
 export class AuthModule {}

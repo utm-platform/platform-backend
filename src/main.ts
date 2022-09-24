@@ -12,6 +12,7 @@ async function bootstrap() {
         .setTitle('English Platform API')
         .setDescription('Documentación de la API de la plataforma de inglés')
         .setVersion('1.0')
+        .addBearerAuth()
         .addTag('auth')
         .addTag('groups')
         .addTag('students')
@@ -19,7 +20,7 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, config)
 
-    SwaggerModule.setup('api', app, document)
+    SwaggerModule.setup('/', app, document)
     await app.listen(process.env.PORT || 5000)
 }
 bootstrap()
