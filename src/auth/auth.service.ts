@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { compare } from 'bcrypt'
 import { Model } from 'mongoose'
-import { Student, StudentDocument } from '../students/schema/students.schema'
+import { User, UserDocument } from '../users/schema/user.schema'
 import { LoginDto } from './dto/login.dto'
 import { JwtService } from '@nestjs/jwt'
 
@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt'
 export class AuthService {
 
     constructor(
-        @InjectModel(Student.name) private authModel: Model<StudentDocument>,
+        @InjectModel(User.name) private authModel: Model<UserDocument>,
         private readonly jwtService: JwtService
     ) { }
 

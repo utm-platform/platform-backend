@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, IsNotEmpty, Length } from 'class-validator'
 import { Types } from 'mongoose'
 
-export class CreateStudentDto {
+export class CreateUserDto {
     @IsNotEmpty()
     @ApiProperty({description: 'La ID del estudiante', example: '1930599'})
         matricula: string

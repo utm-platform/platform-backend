@@ -1,22 +1,21 @@
 import { getModelToken } from '@nestjs/mongoose'
 import { Test, TestingModule } from '@nestjs/testing'
-import { UsersModule } from '../users/users.module'
-import { User } from '../users/schema/user.schema'
-import { AuthModule } from './auth.module'
-import { AuthService } from './auth.service'
+import { User } from './schema/user.schema'
+import { UsersModule } from './users.module'
+import { UsersService } from './users.service'
 
-describe('AuthService', () => {
-    let service: AuthService
+describe('UsersService', () => {
+    let service: UsersService
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            imports: [AuthModule, UsersModule],
+            imports: [UsersModule],
         })
             .overrideProvider(getModelToken(User.name))
             .useValue(jest.fn())
             .compile()
 
-        service = module.get<AuthService>(AuthService)
+        service = module.get<UsersService>(UsersService)
     })
 
     it('should be defined', () => {
