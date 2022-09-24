@@ -20,9 +20,9 @@ export class AuthService {
 
         if (!user) throw new HttpException('Invalid email or password', HttpStatus.NOT_FOUND)
 
-        const isPasswordValid = await compare(loginDto.password, user.password)
+        const isMatch = await compare(loginDto.password, user.password)
 
-        if (!isPasswordValid) throw new HttpException('Invalid email or password', HttpStatus.NOT_FOUND)
+        if (!isMatch) throw new HttpException('Invalid email or password', HttpStatus.NOT_FOUND)
 
         const token = this.jwtService.sign({ 
             matricula: user.matricula, 
