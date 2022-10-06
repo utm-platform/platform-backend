@@ -3,6 +3,11 @@ import { Document, Types } from 'mongoose'
 
 export type UserDocument = User & Document
 
+export enum UserRole { 
+    ADMIN = 'admin',
+    STUDENT = 'student',
+    TEACHER = 'teacher'
+}
 @Schema()
 export class User {
     @Prop({unique: true})
@@ -15,13 +20,15 @@ export class User {
         email: string
     @Prop({required: true})
         password: string
+    @Prop({
+        enum: ['admin', 'student', 'teacher'],
+        default: 'student'
+    })
+        role: UserRole
     @Prop({default: true})
         isActive: boolean
     @Prop({ type: Types.ObjectId, ref: 'Group' })
-        group: {
-            type: Types.ObjectId,
-            ref: 'Group'
-        }
+        group: Types.ObjectId
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
