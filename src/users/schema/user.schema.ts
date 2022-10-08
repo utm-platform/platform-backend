@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document, Types } from 'mongoose'
+import { Document } from 'mongoose'
 
 export type UserDocument = User & Document
 
@@ -27,8 +27,6 @@ export class User {
         role: UserRole
     @Prop({default: true})
         isActive: boolean
-    @Prop({ type: Types.ObjectId, ref: 'Group' })
-        group: Types.ObjectId
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
@@ -36,7 +34,6 @@ export const UserSchema = SchemaFactory.createForClass(User)
 UserSchema.set('toJSON', {
     transform: (doc, ret) => {
         delete ret.password
-        delete ret._id
         delete ret.__v
         delete ret.isActive
     }

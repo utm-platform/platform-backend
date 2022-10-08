@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, Length } from 'class-validator'
-import { Types } from 'mongoose'
 
 export class CreateUserDto {
     @IsNotEmpty({message: 'La matrícula es requerida'})
@@ -25,7 +24,4 @@ export class CreateUserDto {
     @ApiProperty({description: 'Role', example: 'student'})
         role: string
     isActive?: boolean
-    @IsOptional()
-    @ApiProperty({description: 'ID del grupo', example: '5f9f9c0b9b9b9b9b9b9b9b9b'})
-        group: Types.ObjectId
 }
