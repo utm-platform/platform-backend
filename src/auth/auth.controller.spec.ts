@@ -1,7 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose'
 import { Test, TestingModule } from '@nestjs/testing'
-import { Student } from '../students/schema/students.schema'
-import { StudentsModule } from '../students/students.module'
+import { User } from '../users/schema/user.schema'
+import { UsersModule } from '../users/users.module'
 import { AuthController } from './auth.controller'
 import { AuthModule } from './auth.module'
 
@@ -10,9 +10,9 @@ describe('AuthController', () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            imports: [AuthModule, StudentsModule],
+            imports: [AuthModule, UsersModule],
         })
-            .overrideProvider(getModelToken(Student.name))
+            .overrideProvider(getModelToken(User.name))
             .useValue(jest.fn())
             .compile()
 

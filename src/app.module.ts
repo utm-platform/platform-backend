@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { StudentsModule } from './students/students.module'
+import { UsersModule } from './users/users.module'
 import { GroupsModule } from './groups/groups.module'
 import { AuthModule } from './auth/auth.module'
 import 'dotenv/config'
@@ -8,7 +8,7 @@ import 'dotenv/config'
 @Module({
     imports: [
         MongooseModule.forRoot(process.env.MONGO_URI),
-        StudentsModule,
+        UsersModule,
         GroupsModule,
         AuthModule
     ],

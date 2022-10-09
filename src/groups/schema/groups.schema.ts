@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document, Types } from 'mongoose'
+import { Document, SchemaTypes, Types } from 'mongoose'
+import { User } from '../../users/schema/user.schema'
 
 export type GroupDocument = Group & Document
 
@@ -9,8 +10,10 @@ export class Group {
         name: string
     @Prop({required: true})
         career: string
-    @Prop()
+    @Prop({required: true, type: SchemaTypes.ObjectId, ref: User.name})
         teacher: Types.ObjectId
+    @Prop({ type: [SchemaTypes.ObjectId], ref: User.name})
+        students: Types.ObjectId[]
 }
 
 export const GroupSchema = SchemaFactory.createForClass(Group)
